@@ -22,12 +22,12 @@ import oracle.jdbc.logging.annotations.Log;
 
 @Entity
 @Table(name="TB_CARRO")
-@SequenceGenerator(name="Carro",sequenceName="SQ_TB_CARRO")
+@SequenceGenerator(name="carro",sequenceName="SQ_TB_CARRO")
 public class Carro implements Serializable{
 
 	@Id
 	@Column(name="CD_CARRO")
-	@GeneratedValue(generator="carro",strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(generator = "carro" ,strategy = GenerationType.SEQUENCE)
 	private int id;
 
 	@Column(name="DS_MODELO",nullable=false,length=100)
@@ -53,7 +53,7 @@ public class Carro implements Serializable{
 	@Column(name="FG_COLECIONADOR")
 	private boolean colecionador;
 
-	@Transient //Nao será mapeado para uma coluna no bd 
+	@Transient //Nao será mapeado para uma coluna no banco 
 	private boolean pagaIPVA;
 
 	@Lob //gravar arquivo no banco de dados (BLOB)
@@ -63,6 +63,30 @@ public class Carro implements Serializable{
 	@Enumerated(EnumType.STRING)
 	@Column(name="DS_TRANSMISSAO")
 	private Transmissao transmissao;
+
+	public Carro(String modelo, Integer ano, String motor, String placa, String montadora, Calendar dataFabricacao,
+			boolean colecionador, boolean pagaIPVA, byte[] fotos, Transmissao transmissao) {
+		super();
+		this.modelo = modelo;
+		this.ano = ano;
+		this.motor = motor;
+		this.placa = placa;
+		this.montadora = montadora;
+		this.dataFabricacao = dataFabricacao;
+		this.colecionador = colecionador;
+		this.pagaIPVA = pagaIPVA;
+		this.fotos = fotos;
+		this.transmissao = transmissao;
+	}
+
+	public Carro() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	
 
 
 
